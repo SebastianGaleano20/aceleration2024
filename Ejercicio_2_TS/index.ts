@@ -21,7 +21,10 @@ class Inventory {
   }
 
   updateStock(id: number, newQuantity: number): void {
-    // Implementar
+    const product = this.products.find((product) => product.id === id); //Buscamos el producto
+    if (product) {
+      product.quantity = newQuantity; //Actualizamos la cantidad
+    }
   }
 
   getTotalValue(): number {
