@@ -36,7 +36,13 @@ class Inventory {
   }
 
   getLowStockProducts(threshold: number): Product[] {
-  // Implementar: Devolver productos con cantidad menor al umbral
+    let lowStockProducts: Product[] = [];
+    this.products.filter((product) => {
+      if (product.quantity < threshold) {
+        lowStockProducts.push(product);
+      }
+    });
+    return lowStockProducts;
   }
 }
 
