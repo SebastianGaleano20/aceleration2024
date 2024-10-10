@@ -28,7 +28,11 @@ class Inventory {
   }
 
   getTotalValue(): number {
- // Implementar: Calcular el valor total del inventario
+    let total = 0;
+    this.products.forEach((product) => {
+      total += product.price * product.quantity; //Iteramos sobre cada producto su precio y cantidad para sumarlo al total
+    });
+    return total;
   }
 
   getLowStockProducts(threshold: number): Product[] {
