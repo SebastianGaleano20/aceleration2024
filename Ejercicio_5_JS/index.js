@@ -1,4 +1,5 @@
-/* Generador de informes de gastos
+/*
+Generador de informes de gastos
 Pautas:
 - Crea clases para Expense y ExpenseReport.
 - Implementa metodos para agregar gastos, calcular totales por categoría y generar un informe resumido.
@@ -22,29 +23,31 @@ class Expense {
         this.category = category;
         this.date = date;
     }
-
-    newExpense(expense) {
-        expenses.push(expense);
-    }
 }
 
 class ExpenseReport {
     constructor(expenses) {
         this.expenses = expenses;
     }
-    
+
     totalExpensesForCategory(category) {
         const total = expenses
             .filter(expense => expense.category === category)
             .reduce((total, expense) => total + expense.amount, 0)
         return `El total de gastos sobre la categoria "${category}" es: ${total}`;
     };
+    addExpense(id, description, amount, category, date){
+        const createExpense = new Expense(id, description, amount, category, date);
+        this.expenses.push(createExpense);
+     }
 
-    resumeExpense() {
+    getExpenses() {
         return expenses;
     }
 }
 
+/*
+Practica extensa
 const expense1 = new Expense(1, "Almuerzo de negocios", 55.50, "Comida", "2024-03-01");
 const expense2 = new Expense(2, "Taxi al aeropuerto", 30.00, "Transporte", "2024-03-02");
 const expense3 = new Expense(3, "Hotel", 200.00, "Alojamiento", "2024-03-02");
@@ -52,8 +55,20 @@ const expense4 = new Expense(4, "Cena con cliente", 80.00, "Comida", "2024-03-03
 const expense5 = new Expense(5, "Vuelo de regreso", 350.00, "Transporte", "2024-03-04");
 
 const expenses = [expense1, expense2, expense3, expense4, expense5];
+*/
+
+//Array mejorado
+const expenses = [
+    new Expense(1, "Almuerzo de negocios", 55.50, "Comida", "2024-03-01"),
+    new Expense(2, "Taxi al aeropuerto", 30.00, "Transporte", "2024-03-02"),
+    new Expense(3, "Hotel", 200.00, "Alojamiento", "2024-03-02"),
+    new Expense(4, "Cena con cliente", 80.00, "Comida", "2024-03-03"),
+    new Expense(5, "Vuelo de regreso", 350.00, "Transporte", "2024-03-04")
+];
 
 const reportExpense = new ExpenseReport(expenses);
+
+const newExprense = reportExpense.addExpense(6, "Cena con cliente", 80.00, "Comida", "2024-03-03");
 
 const totalComida = reportExpense.totalExpensesForCategory("Comida");
 console.log(totalComida)
@@ -62,5 +77,5 @@ console.log(totalTransporte)
 const totalAlojamiento = reportExpense.totalExpensesForCategory("Alojamiento");
 console.log(totalAlojamiento)
 
-const resume = reportExpense.resumeExpense();
+const resume = reportExpense.getExpenses();
 console.log(resume);
