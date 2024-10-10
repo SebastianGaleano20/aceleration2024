@@ -32,17 +32,18 @@ class Inventory {
     this.products.forEach((product) => {
       total += product.price * product.quantity; //Iteramos sobre cada producto su precio y cantidad para sumarlo al total
     });
-    return total;
+    return total; //Retornamos el total
   }
 
   getLowStockProducts(threshold: number): Product[] {
     let lowStockProducts: Product[] = [];
     this.products.filter((product) => {
-      if (product.quantity < threshold) {
+      if (product.quantity < threshold) { //Filtramos los productos con cantidad menor al umbral
+        //Añadimos a la lista
         lowStockProducts.push(product);
       }
     });
-    return lowStockProducts;
+    return lowStockProducts; //Retornamos la lista
   }
 }
 
