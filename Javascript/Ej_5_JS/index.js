@@ -36,6 +36,7 @@ class ExpenseReport {
             .reduce((total, expense) => total + expense.amount, 0)
         return `El total de gastos sobre la categoria "${category}" es: ${total}`;
     };
+    
     addExpense(id, description, amount, category, date){
         const createExpense = new Expense(id, description, amount, category, date);
         this.expenses.push(createExpense);
@@ -68,7 +69,7 @@ const expenses = [
 
 const reportExpense = new ExpenseReport(expenses);
 
-const newExprense = reportExpense.addExpense(6, "Cena con cliente", 80.00, "Comida", "2024-03-03");
+const newExpense = reportExpense.addExpense(6, "Cena con cliente", 80.00, "Comida", "2024-03-03");
 
 const totalComida = reportExpense.totalExpensesForCategory("Comida");
 console.log(totalComida)
