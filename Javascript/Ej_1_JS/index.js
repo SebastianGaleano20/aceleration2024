@@ -26,22 +26,8 @@ class Book {
             this.available = available
     }
 
-    searchBook(BOOKS, title) {
+    static searchBook(title) {
         return BOOKS.find(book => book.title === title)
-    }
-
-    lendBook(book, user) {
-        if (book.available) {
-            user.borrowedBooks.push(book)
-        }
-    }
-
-    returnBook(book, user) {
-        user.borrowedBooks.pop(book)
-    }
-
-    addBook(book, BOOKS) {
-        BOOKS.push(book)
     }
 }
 
@@ -51,28 +37,47 @@ class User {
             this.name = name,
             this.borrowedBooks = borrowedBooks
     }
-    addUsers(user, USERS) {
-        USERS.push(user)
+
+    static lendBook(book, user) {
+        if (book.available) {
+            user.borrowedBooks.push(book)
+        }
+        return `El libro "${book.title}" ha sido prestado a ${user.name}`
     }
+
+    static returnBook(book, user) {
+        user.borrowedBooks.pop(book)
+        return `El libro "${book.title}" ha sido devuelto`
+    }
+    
+
 }
 
-const BOOKS = [
-    new Book(1, "1984", "George Orwell", true),
-    new Book(2, "To Kill a Mockingbird", "Harper Lee", true),
-    new Book(3, "Pride and Prejudice", "Jane Austen", false)
-]
+const BOOKS = []
 
-const USERS = [
-    new User(1, "Alice Johnson", []),
-    new User(2, "Bob Smith", [3])
-]
+const book1 = new Book(1, "1984", "George Orwell", true)
+const book2 = new Book(2, "To Kill a Mockingbird", "Harper Lee", true)
+const book3 = new Book(3, "Pride and Prejudice", "Jane Austen", false)
+BOOKS.push(book1, book2, book3)
 
-const foundBook = Book.searchBook()
+const USERS = []
 
-const lendBook = Book.lendBook(1,1)
-console.log(`el libro ${lendBook.title} ha sido prestado a ${lendBook.name}`)
+const user1 = new User(1, "Alice Johnson", [])
+const user2 = new User(2, "Bob Smith", [3])
 
-const returnBook = Book.returnBook(3,2)
-console.log(`el libro ${returnBook.title} ha sido devuelto a ${returnBook.name}`)
+USERS.push(user1, user2)
+
+const foundBook = Book.searchBook("1984")
+console.log(foundBook)
+
+const lendBook = User.lendBook(book1, user1)
+console.log(lendBook)
+
+const lendBook2 = User.lendBook(book2, user2)
+console.log(lendBook2)
+
+const returnBook = User.returnBook(book3, user2)
+console.log(returnBook)
+
 
 
