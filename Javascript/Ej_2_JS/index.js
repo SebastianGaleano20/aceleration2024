@@ -23,7 +23,7 @@ class Task{
         this.priority = priority
     }
 
-    addTask(title,description,dueDate,priority){
+    static addTask(title,description,dueDate,priority){
        const newTask = new Task(title,description,dueDate,priority)
        TASKS.push(newTask)
        return `${newTask.title} ha sido agregada a la lista de tareas`
@@ -37,6 +37,16 @@ class Task{
             return `${taskToDelete.title} ha sido eliminada de la lista de tareas`
         }
     }
+
+    orderTasks(){
+        TASKS.sort((a,b)=> a.priority - b.priority)
+    }
 }
 
 const TASKS = []
+
+Task.addTask("Completar informe", "Finalizar informe trimestral", "2024-03-15", 2)
+Task.addTask("Reunión con cliente", "Presentar propuesta de proyecto", "2024-03-10", 1)
+Task.addTask("Actualizar software", "Instalar últimas actualizaciones", "2024-03-20", 3)
+
+console.log(TASKS)
