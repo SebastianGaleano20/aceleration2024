@@ -24,12 +24,24 @@ class Task{
     }
 
     static addTask(title,description,dueDate,priority){
+        if(!title){
+            return `El titulo es requerido`
+        }
+       if(!description){
+        return `La descripcion es requerida`
+       }
+       if(!dueDate){
+        return `La fecha de vencimiento es requerida`
+       }
        const newTask = new Task(title,description,dueDate,priority)
        TASKS.push(newTask)
        return `${newTask.title} ha sido agregada a la lista de tareas`
     }
 
-    deleteTask(title){
+    static deleteTask(title){
+        if(!title){
+            return `El titulo es requerido`
+        }
         const taskToDelete = TASKS.find((task)=> task.title === title)
         if(taskToDelete){
             const index = TASKS.indexOf(taskToDelete)
@@ -38,8 +50,9 @@ class Task{
         }
     }
 
-    orderTasks(){
+    static orderTasks(){
         TASKS.sort((a,b)=> a.priority - b.priority)
+        return `Las tareas han sido ordenadas`
     }
 }
 
@@ -48,5 +61,16 @@ const TASKS = []
 Task.addTask("Completar informe", "Finalizar informe trimestral", "2024-03-15", 2)
 Task.addTask("Reunión con cliente", "Presentar propuesta de proyecto", "2024-03-10", 1)
 Task.addTask("Actualizar software", "Instalar últimas actualizaciones", "2024-03-20", 3)
+
+console.log(TASKS)
+
+const listTaskOrder = Task.orderTasks()
+
+console.log(listTaskOrder)
+
+console.log(TASKS)
+
+const deleteTask = Task.deleteTask("Reunión con cliente")
+console.log(deleteTask)
 
 console.log(TASKS)
