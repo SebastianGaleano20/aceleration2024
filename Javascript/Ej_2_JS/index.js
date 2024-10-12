@@ -22,4 +22,21 @@ class Task{
         this.dueDate = dueDate,
         this.priority = priority
     }
+
+    addTask(title,description,dueDate,priority){
+       const newTask = new Task(title,description,dueDate,priority)
+       TASKS.push(newTask)
+       return `${newTask.title} ha sido agregada a la lista de tareas`
+    }
+
+    deleteTask(title){
+        const taskToDelete = TASKS.find((task)=> task.title === title)
+        if(taskToDelete){
+            const index = TASKS.indexOf(taskToDelete)
+            TASKS.splice(index,1)
+            return `${taskToDelete.title} ha sido eliminada de la lista de tareas`
+        }
+    }
 }
+
+const TASKS = []
