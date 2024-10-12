@@ -16,17 +16,24 @@ class ReservationSystem {
 
   makeReservation(reservation: Reservation): void {
     // Implementar
+    this.reservations.push(reservation);
   }
 
   cancelReservation(id: number): void {
     // Implementar
+    const index = this.reservations.findIndex((r) => r.id === id);
+    if (index !== -1) {
+      this.reservations.splice(index, 1);
+    }
   }
 
   getReservationsByDate(date: Date): Reservation[] {
-    // Implementar: Devolver reservas para una fecha especÃ­fica
+    // Implementar: Devolver reservas para una fecha específica
+    const reservationsByDate:Reservation[] = this.reservations.filter((reservation)=> reservation.checkInDate === date);
+    return reservationsByDate;
   }
 
   calculateOccupancy(month: number, year: number): number {
-    // Implementar: Calcular porcentaje de ocupaciÃ³n para un mes y aÃ±o dados
+    // Implementar: Calcular porcentaje de ocupación para un mes y año dados
   }
 }
