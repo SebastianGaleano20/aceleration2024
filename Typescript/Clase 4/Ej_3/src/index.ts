@@ -24,11 +24,19 @@ interface LoggerConfig {
 }
 
 class Logger {
+    private config: LoggerConfig;
+
     constructor(config: LoggerConfig) {
         // Configurar el logger
+        this.config = config
     }
 
     log(level: LogLevel, message: string): void {
         // Implementar el método de logging
+        if (level >= this.config.minLevel) {
+            const timestamp = new Date().toISOString();
+            const logMessage = `${timestamp} [${level}]: ${message}`;
+            console.log(logMessage)
+        }
     }
 }
