@@ -44,10 +44,9 @@ class Logger implements LoggerConfig { //Implements para que sea estricto en la 
     log(level: LogLevel, message: string): void {
         // Implementar el método de logging 
         if (this.levelGrade[level] >= this.levelGrade[this.minLevel]) { //Comparamos el nivel recibido por parametro al asignado en el constructor
-            const timestamp = this.dateFormat; //Obtenemos la fecha actual
-            const logMessage =
-                `FECHA: ${timestamp},
-            NIVEL: [${level}]: ${message}`;
+            const timestamp = this.dateFormat;
+            //Obtenemos la fecha actual
+            const logMessage = `FECHA: [${timestamp}], NIVEL: [${level}]: ${message}`;
             console.log(logMessage)
         }
     }
@@ -59,10 +58,10 @@ class Logger implements LoggerConfig { //Implements para que sea estricto en la 
     }
 }
 
-const log1 = new Logger({ "minLevel": "DEBUG", "dateFormat": Date.now().toString(), "destination": "consola" })
-const log2 = new Logger({ "minLevel": "INFO", "dateFormat": Date.now().toString(), "destination": "archivo" })
-const log3 = new Logger({ "minLevel": "WARN", "dateFormat": Date.now().toString(), "destination": "consola" })
-const log4 = new Logger({ "minLevel": "ERROR", "dateFormat": Date.now().toString(), "destination": "archivo" })
+const log1 = new Logger({ "minLevel": "DEBUG", "dateFormat": new Date().toLocaleDateString('es-ES'), "destination": "consola" })
+const log2 = new Logger({ "minLevel": "INFO", "dateFormat": new Date().toLocaleDateString('es-ES'), "destination": "archivo" })
+const log3 = new Logger({ "minLevel": "WARN", "dateFormat": new Date().toLocaleDateString('es-ES'), "destination": "consola" })
+const log4 = new Logger({ "minLevel": "ERROR", "dateFormat": new Date().toLocaleDateString('es-ES'), "destination": "archivo" })
 
 log1.log("DEBUG", "DEBUG MESSAGE")
 log2.log("INFO", "INFO MESSAGE")
