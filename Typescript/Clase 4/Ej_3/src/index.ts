@@ -51,14 +51,25 @@ class Logger implements LoggerConfig { //Implements para que sea estricto en la 
             console.log(logMessage)
         }
     }
+
+    logDestination(destination: "consola" | "archivo"): void {
+        // Implementar el método para cambiar el destino de los logs
+        this.destination = destination;
+        console.log(`Destination changed to ${destination}`)
+    }
 }
 
 const log1 = new Logger({ "minLevel": "DEBUG", "dateFormat": Date.now().toString(), "destination": "consola" })
-const log2 = new Logger({ "minLevel": "INFO", "dateFormat": Date.now().toString(), "destination": "consola" })
+const log2 = new Logger({ "minLevel": "INFO", "dateFormat": Date.now().toString(), "destination": "archivo" })
 const log3 = new Logger({ "minLevel": "WARN", "dateFormat": Date.now().toString(), "destination": "consola" })
-const log4 = new Logger({ "minLevel": "ERROR", "dateFormat": Date.now().toString(), "destination": "consola" })
+const log4 = new Logger({ "minLevel": "ERROR", "dateFormat": Date.now().toString(), "destination": "archivo" })
 
 log1.log("DEBUG", "DEBUG MESSAGE")
 log2.log("INFO", "INFO MESSAGE")
 log3.log("WARN", "WARN MESSAGE")
 log4.log("ERROR", "ERROR MESSAGE")
+
+log1.logDestination("archivo")
+log2.logDestination("consola")
+log3.logDestination("archivo")
+log4.logDestination("consola")
