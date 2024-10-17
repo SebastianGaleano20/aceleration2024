@@ -40,25 +40,47 @@ class ReservationSystem {
 
 const systemOn = new ReservationSystem();
 
-const checkInDateString = "2024-10-17";
-const checkOutDateString = "2024-10-18";
+const date1 = "2024-10-17";
+const date2 = "2024-10-18";
+const date3 = "2024-10-19";
+const date4 = "2024-10-20";
+
+const outDate1 = "2024-11-18";
+const outDate2 = "2024-11-19";
+const outDate3 = "2024-11-20";
+const outDate4 = "2024-11-21";
+
 
 const reservation: Reservation = {
     id: 1,
      guestName: "Seba",
   roomType: "suite",
-  checkInDate: new Date(checkInDateString),
-  checkOutDate: new Date(checkOutDateString)
+  checkInDate: new Date(date1),
+  checkOutDate: new Date(outDate4)
 };
 const reservation2: Reservation = {
     id: 2,
      guestName: "Seba",
   roomType: "suite",
-  checkInDate: new Date(checkInDateString),
-  checkOutDate: new Date(checkOutDateString)
+  checkInDate: new Date(date2),
+  checkOutDate: new Date(outDate1)
+};
+const reservation3: Reservation = {
+    id: 3,
+     guestName: "Seba",
+  roomType: "suite",
+  checkInDate: new Date(date3),
+  checkOutDate: new Date(outDate2)
+};
+const reservation4: Reservation = {
+    id: 4,
+     guestName: "Seba",
+  roomType: "suite",
+  checkInDate: new Date(date4),
+  checkOutDate: new Date(outDate3)
 };
 
 systemOn.makeReservation(reservation)
-//console.log(systemOn.getReservations())
+console.log(systemOn.getReservations())
 
 console.log(systemOn.getReservationsByDate(new Date("2024-10-17")))
