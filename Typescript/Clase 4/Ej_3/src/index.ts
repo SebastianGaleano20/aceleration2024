@@ -23,20 +23,42 @@ interface LoggerConfig {
     destination: "consola" | "archivo";
 }
 
-class Logger {
-    private config: LoggerConfig;
-
+class Logger implements LoggerConfig { //Implements para que sea estricto en la estructura de datos
+    minLevel: LogLevel;
+    dateFormat: string;
+    destination: "consola" | "archivo";
+    levelGrade: { [key: string]: number } = //Definimos un nivel de grado para cada log
+        {
+            DEBUG: 0,
+            INFO: 1,
+            WARN: 2,
+            ERROR: 3
+        }
     constructor(config: LoggerConfig) {
         // Configurar el logger
-        this.config = config
+        this.minLevel = config.minLevel;
+        this.dateFormat = config.dateFormat;
+        this.destination = config.destination;
     }
 
     log(level: LogLevel, message: string): void {
-        // Implementar el método de logging
-        if (level >= this.config.minLevel) {
-            const timestamp = new Date().toISOString();
-            const logMessage = `${timestamp} [${level}]: ${message}`;
+        // Implementar el método de logging 
+        if (this.levelGrade[level] >= this.levelGrade[this.minLevel]) { //Comparamos el nivel recibido por parametro al asignado en el constructor
+            const timestamp = this.dateFormat; //Obtenemos la fecha actual
+            const logMessage =
+                `FECHA: ${timestamp},
+            NIVEL: [${level}]: ${message}`;
             console.log(logMessage)
         }
     }
 }
+
+const log1 = new Logger({ "minLevel": "DEBUG", "dateFormat": Date.now().toString(), "destination": "consola" })
+const log2 = new Logger({ "minLevel": "INFO", "dateFormat": Date.now().toString(), "destination": "consola" })
+const log3 = new Logger({ "minLevel": "WARN", "dateFormat": Date.now().toString(), "destination": "consola" })
+const log4 = new Logger({ "minLevel": "ERROR", "dateFormat": Date.now().toString(), "destination": "consola" })
+
+log1.log("DEBUG", "DEBUG MESSAGE")
+log2.log("INFO", "INFO MESSAGE")
+log3.log("WARN", "WARN MESSAGE")
+log4.log("ERROR", "ERROR MESSAGE")
