@@ -14,26 +14,31 @@ También debe ser flexible para soportar múltiples destinos, como la consola o 
 *Código base:*
 typescript
 */
+import { LogLevel, LoggerConfig } from "./types/loggerManager";
 
-type LogLevel = "DEBUG" | "INFO" | "WARN" | "ERROR";
 
-interface LoggerConfig {
-    minLevel: LogLevel;
-    dateFormat: string;
-    destination: "consola" | "archivo";
-}
+//Clase para formato de fecha (Pueden ser varios formatos)
+
+//Clase para destino del log
+
+//Clase para nivel minimo de log
+
+//Formato de mensajes
+
 
 class Logger implements LoggerConfig { //Implements para que sea estricto en la estructura de datos
     minLevel: LogLevel;
     dateFormat: string;
     destination: "consola" | "archivo";
-    levelGrade: { [key: string]: number } = //Definimos un nivel de grado para cada log
+    levelGrade: Record<LogLevel, number> = 
+    //Definimos un nivel de grado para cada log  - Record para typar objetos
         {
             DEBUG: 0,
             INFO: 1,
             WARN: 2,
             ERROR: 3
         }
+
     constructor(config: LoggerConfig) {
         // Configurar el logger
         this.minLevel = config.minLevel;
