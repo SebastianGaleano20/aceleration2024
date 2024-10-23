@@ -22,31 +22,33 @@ class DefaultFormatter implements LogFormatter {
         constructor(dateFormat: DateFormat) {   Utilizo el constructor para crear el objeto y asignarle el tipo de dato
            this.dateFormat = dateFormat;        Asigno el tipo de dato al objeto creado
       } */
-    constructor(private dateFormat: DateFormat){}
-    //Al usar implements LogFormatter podemos acceder al metodo format:
-    format(logMessage: LogMessage): string {
-    
-    }
+    constructor(private dateFormat: DateFormat) {}
     /* 
     Creamos un metodo privado para formatear la fecha para retornar un mensaje distinto
     por cada formato de fecha que se le pase. 
     */
-    private formatDate(date: Date): string{
-        if(this.dateFormat === DateFormat.ARGENTINA){
-            return date.toLocaleDateString('es-ES');
-        }
-        if(this.dateFormat === DateFormat.USA){
-            return date.toLocaleDateString('en-US');
-        }
-        if(this.dateFormat === DateFormat.CHINA){
-            return date.toLocaleDateString('zh-CN');
-        }
-        if(this.dateFormat === DateFormat.ISO){
+    private formatDate(date: Date): string {
+        //Si es formato ISO se utiliza el metodo toISOString
+        if (this.dateFormat === DateFormat.ISO) {
             return date.toISOString();
         }
-        return date.toLocaleDateString();
-    }
+        //Creamos una constante con las opciones para formatear la fecha
+        const options: Intl.DateTimeFormatOptions = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
 
+        }
+        /* 
+        En caso de ser otro formato de fecha,
+        se envia la fecha recibida y las opciones creadas para formatear la fecha
+        */
+        return date.toLocaleDateString(this.dateFormat, options);
+    }
+    
 }
 
 class Logger implements LoggerConfig { //Implements para que sea estricto en la estructura de datos
