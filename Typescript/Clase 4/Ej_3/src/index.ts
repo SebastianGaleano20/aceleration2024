@@ -14,7 +14,7 @@ También debe ser flexible para soportar múltiples destinos, como la consola o 
 *Código base:*
 typescript
 */
-import { LogLevel, LoggerConfig } from "./types/loggerManager";
+import { LogLevel, LoggerConfig } from "./types/types";
 
 
 //Clase para formato de fecha (Pueden ser varios formatos)
