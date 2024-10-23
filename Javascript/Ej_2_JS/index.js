@@ -1,5 +1,5 @@
-/* Gestor de tareas con prioridades
-
+/* 
+Gestor de tareas con prioridades
 Pautas:
 - Crea una clase Task con propiedades como título, descripción, fecha de vencimiento y prioridad.✅
 - Implementa métodos para agregar, eliminar y ordenar tareas.
@@ -13,6 +13,7 @@ const initialTasks = [
   { id: 2, title: "Reunión con cliente", description: "Presentar propuesta de proyecto", dueDate: "2024-03-10", priority: 1 },
   { id: 3, title: "Actualizar software", description: "Instalar últimas actualizaciones", dueDate: "2024-03-20", priority: 3 }
 ];
+
 */
 
 class Task{

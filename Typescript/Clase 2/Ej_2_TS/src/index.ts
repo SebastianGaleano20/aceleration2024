@@ -15,8 +15,8 @@ class Inventory {
     const existingProduct = this.products.find((p) => p.id === product.id);
     if (existingProduct) {
       existingProduct.quantity += product.quantity; //Si existe actualizamos la cantidad
-    }else{
-        this.products.push(product) //Si no existe, se agrega a la lista
+    } else {
+      this.products.push(product) //Si no existe, se agrega a la lista
     }
   }
 
@@ -28,22 +28,11 @@ class Inventory {
   }
 
   getTotalValue(): number {
-    let total = 0;
-    this.products.forEach((product) => {
-      total += product.price * product.quantity; //Iteramos sobre cada producto su precio y cantidad para sumarlo al total
-    });
-    return total; //Retornamos el total
+    return this.products.reduce((total, product) => total + (product.price * product.quantity), 0); //Calculamos el valor total de los productos
   }
 
   getLowStockProducts(threshold: number): Product[] {
-    let lowStockProducts: Product[] = [];
-    this.products.filter((product) => {
-      if (product.quantity < threshold) { //Filtramos los productos con cantidad menor al umbral
-        //Añadimos a la lista
-        lowStockProducts.push(product);
-      }
-    });
-    return lowStockProducts; //Retornamos la lista
+    return this.products.filter((product) => product.quantity < threshold); //Filtramos los productos con cantidad menor al threshold
   }
 }
 
