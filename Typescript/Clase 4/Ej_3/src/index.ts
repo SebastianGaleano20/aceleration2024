@@ -14,15 +14,17 @@ También debe ser flexible para soportar múltiples destinos, como la consola o 
 *Código base:*
 typescript
 */
-import { DateFormat, LogFormatter, LogLevel, LogMessage, LoggerConfig } from "./types/types";
+import { DateFormat, LogDestination, LogFormatter, LogLevel, LogMessage, LoggerConfig } from "./types/types";
+import { appendFileSync } from "node:fs";
 
+//Clase para formatear la fecha y crear el mensaje de LOG
 class DefaultFormatter implements LogFormatter {
     /* Se puede construir la funcion de la siguiente manera:
         private dateFormat: DateFormat;         Inicio la variable con el tipo de dato DateFormat (USA,ARG,CH,ISO)
         constructor(dateFormat: DateFormat) {   Utilizo el constructor para crear el objeto y asignarle el tipo de dato
            this.dateFormat = dateFormat;        Asigno el tipo de dato al objeto creado
       } */
-    constructor(private dateFormat: DateFormat) {}
+    constructor(private dateFormat: DateFormat) { }
     /* 
     Creamos un metodo privado para formatear la fecha para retornar un mensaje distinto
     por cada formato de fecha que se le pase. 
@@ -48,7 +50,24 @@ class DefaultFormatter implements LogFormatter {
         */
         return date.toLocaleDateString(this.dateFormat, options);
     }
-    
+    //Al usar implements LogFormatter podemos acceder al metodo format:
+    format(logMessage: LogMessage): string {
+        //Creamos una variable para guardar el formato creado antes de enviarlo por mensaje
+        const formattedDate = this.formatDate(logMessage.timestamp); //Utilizamos la funcion privada formatDate y le enviamos el tiempo recibido por logMessage.timestamp
+        //Retornamos el mensaje con el formato tipo LogMessage
+        return `[${formattedDate}] [${logMessage.level}]: ${logMessage.message}`
+    }
+}
+//Clase para manejar el destino del mensaje creado
+class FileDestination implements LogDestination {
+    //Creamos un constructor para recibir el path del archivo
+    constructor(private filePath: string) { }
+    //Utilizamos el metodo write que se implementa en LogDestination
+    write(message: string): void {
+        const PATH_ROUTE = `${__dirname}` //Guardamos la ruta del directorio en donde se encuentra mi archivo actual (en este caso src)
+        const filePath = `${PATH_ROUTE}/logs/${this.filePath}` //Le indicamos al archivo que se guarde dentro de la carpeta logs
+        appendFileSync(filePath, message + '\n') //Utilizamos el metodo appendFileSync para guardar el mensaje en el archivo
+    }
 }
 
 class Logger implements LoggerConfig { //Implements para que sea estricto en la estructura de datos
@@ -87,18 +106,3 @@ class Logger implements LoggerConfig { //Implements para que sea estricto en la 
         console.log(`Destination changed to ${destination}`)
     }
 }
-
-const log1 = new Logger({ "minLevel": "DEBUG", "dateFormat": new Date().toLocaleDateString('es-ES'), "destination": "consola" })
-const log2 = new Logger({ "minLevel": "INFO", "dateFormat": new Date().toLocaleDateString('es-ES'), "destination": "archivo" })
-const log3 = new Logger({ "minLevel": "WARN", "dateFormat": new Date().toLocaleDateString('es-ES'), "destination": "consola" })
-const log4 = new Logger({ "minLevel": "ERROR", "dateFormat": new Date().toLocaleDateString('es-ES'), "destination": "archivo" })
-
-log1.log("DEBUG", "DEBUG MESSAGE")
-log2.log("INFO", "INFO MESSAGE")
-log3.log("WARN", "WARN MESSAGE")
-log4.log("ERROR", "ERROR MESSAGE")
-
-log1.logDestination("archivo")
-log2.logDestination("consola")
-log3.logDestination("archivo")
-log4.logDestination("consola")
