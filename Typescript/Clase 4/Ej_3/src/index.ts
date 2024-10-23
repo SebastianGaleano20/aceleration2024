@@ -14,24 +14,47 @@ También debe ser flexible para soportar múltiples destinos, como la consola o 
 *Código base:*
 typescript
 */
-import { LogLevel, LoggerConfig } from "./types/types";
+import { DateFormat, LogFormatter, LogLevel, LogMessage, LoggerConfig } from "./types/types";
 
+class DefaultFormatter implements LogFormatter {
+    /* Se puede construir la funcion de la siguiente manera:
+        private dateFormat: DateFormat;         Inicio la variable con el tipo de dato DateFormat (USA,ARG,CH,ISO)
+        constructor(dateFormat: DateFormat) {   Utilizo el constructor para crear el objeto y asignarle el tipo de dato
+           this.dateFormat = dateFormat;        Asigno el tipo de dato al objeto creado
+      } */
+    constructor(private dateFormat: DateFormat){}
+    //Al usar implements LogFormatter podemos acceder al metodo format:
+    format(logMessage: LogMessage): string {
+    
+    }
+    /* 
+    Creamos un metodo privado para formatear la fecha para retornar un mensaje distinto
+    por cada formato de fecha que se le pase. 
+    */
+    private formatDate(date: Date): string{
+        if(this.dateFormat === DateFormat.ARGENTINA){
+            return date.toLocaleDateString('es-ES');
+        }
+        if(this.dateFormat === DateFormat.USA){
+            return date.toLocaleDateString('en-US');
+        }
+        if(this.dateFormat === DateFormat.CHINA){
+            return date.toLocaleDateString('zh-CN');
+        }
+        if(this.dateFormat === DateFormat.ISO){
+            return date.toISOString();
+        }
+        return date.toLocaleDateString();
+    }
 
-//Clase para formato de fecha (Pueden ser varios formatos)
-
-//Clase para destino del log
-
-//Clase para nivel minimo de log
-
-//Formato de mensajes
-
+}
 
 class Logger implements LoggerConfig { //Implements para que sea estricto en la estructura de datos
     minLevel: LogLevel;
     dateFormat: string;
     destination: "consola" | "archivo";
-    levelGrade: Record<LogLevel, number> = 
-    //Definimos un nivel de grado para cada log  - Record para typar objetos
+    levelGrade: Record<LogLevel, number> =
+        //Definimos un nivel de grado para cada log  - Record para typar objetos
         {
             DEBUG: 0,
             INFO: 1,
