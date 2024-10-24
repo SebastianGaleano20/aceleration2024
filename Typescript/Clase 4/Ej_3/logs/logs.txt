@@ -1,0 +1,70 @@
+[24 de octubre de 2024, 13:49:20] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:49:20] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:49:20] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:49:20] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:49:21] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:49:21] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:49:21] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:49:21] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:49:38] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:49:38] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:49:38] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:49:38] [ERROR]: Este es un mensaje de ERROR
+[October 24, 2024 at 1:49:41 PM] [DEBUG]: Este es un mensaje de DEBUG
+[October 24, 2024 at 1:49:41 PM] [INFO]: Este es un mensaje de INFO
+[October 24, 2024 at 1:49:41 PM] [WARN]: Este es un mensaje de WARN
+[October 24, 2024 at 1:49:41 PM] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:49:46] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:49:46] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:49:46] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:49:46] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:50:01] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:50:01] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:50:01] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:50:01] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:50:07] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:50:07] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:50:07] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:50:07] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:50:19] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:50:19] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:50:19] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:50:19] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:50:35] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:50:35] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:50:35] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:50:35] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:50:36] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:50:36] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:50:36] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:50:36] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:50:42] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:50:42] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:50:42] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:50:42] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:50:44] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:50:44] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:50:44] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:50:44] [ERROR]: Este es un mensaje de ERROR
+[24 de octubre de 2024, 13:50:47] [DEBUG]: Este es un mensaje de DEBUG
+[24 de octubre de 2024, 13:50:47] [INFO]: Este es un mensaje de INFO
+[24 de octubre de 2024, 13:50:47] [WARN]: Este es un mensaje de WARN
+[24 de octubre de 2024, 13:50:47] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:50:55.713Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:50:55.716Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:50:56.779Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:50:56.783Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:51:17.989Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:51:17.992Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:51:19.328Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:51:19.331Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:51:25.944Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:51:25.947Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:51:30.640Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:51:30.642Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:51:34.576Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:51:34.579Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:51:45.324Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:51:45.327Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:51:53.091Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:51:53.094Z] [ERROR]: Este es un mensaje de ERROR

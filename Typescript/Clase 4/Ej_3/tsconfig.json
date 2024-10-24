@@ -1,12 +1,17 @@
 {
-    "compilerOptions": {
-      "target": "es2015",    // O es2018, es2019, etc.
-      "module": "commonjs", 
-      "lib": ["es2015", "dom"],
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true
-    },
-    "include": ["src/**/*"]
+  "compilerOptions": {
+    "target": "ESNext", // O es2018, es2019, etc.
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "baseUrl": "./src", // Base para los alias
+    "paths": {
+      "src/*": [
+        "src/*"
+      ]
+    }
   }
+}

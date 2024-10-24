@@ -9,16 +9,16 @@ Detalles: Retornar mensajes para el usuario | Colores en consola |  Mensajes per
 //Tipos de niveles de LOG
 export type LogLevel = "DEBUG" | "INFO" | "WARN" | "ERROR";
 //Tipos de formatos de fechas aceptadas
-export enum DateFormat {
+export  enum DateFormat {
     ARGENTINA = "es-ES",
     USA = "en-US",
     CHINA = "zh-CN",
     ISO = "iso"
 }
 //Interfaz para crear configuraciones de LOG
-export interface LoggerConfig {
+export  interface LoggerConfig {
     minLevel: LogLevel; //Nivel minimo aceptado de type LogLevel
-    dateFormat: DateFormat; //Formato de fecha de tipo Date
+    dateFormat: DateFormat; //Formato de fecha de tipo DateFormat
     destinations?: LogDestination[]; //Destino del LOG puede mostrarse en consola o guardarse en un archivo (json/txt/md etc)
     formatter?: LogFormatter; //Formato de LOG
 }
