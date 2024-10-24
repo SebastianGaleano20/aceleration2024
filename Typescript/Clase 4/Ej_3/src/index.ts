@@ -88,40 +88,51 @@ class ConsoleDestination implements LogDestination {
         console.log(`${color}${message}\x1b[0m`);
     }
 }
-
-class Logger implements LoggerConfig { //Implements para que sea estricto en la estructura de datos.
-    minLevel: LogLevel;
-    dateFormat: string;
-    destination: "consola" | "archivo";
-    levelGrade: Record<LogLevel, number> =
-        //Definimos un nivel de grado para cada log  - Record para typar objetos.
-        {
-            DEBUG: 0,
-            INFO: 1,
-            WARN: 2,
-            ERROR: 3
-        }
-
-    constructor(config: LoggerConfig) {
-        // Configurar el logger
-        this.minLevel = config.minLevel;
-        this.dateFormat = config.dateFormat;
-        this.destination = config.destination;
+//Clase para Loggear
+class Logger {
+    //Creamos un orden de niveles con Record
+    private levelOrder: Record<LogLevel, number> = {
+        DEBUG: 0,
+        INFO: 1,
+        WARN: 2,
+        ERROR: 3
+    };
+    //Creamos una instancia de destino y formato de LOG
+    private formatter: LogFormatter;
+    private destinations: LogDestination[];
+    //Creamos el contructor de la clase
+    constructor(private config: LoggerConfig) { //Utilizamos el formato de LoggerConfig
+        this.formatter = config.formatter || new DefaultFormatter(config.dateFormat); //Indicamos el formato de fecha
+        this.destinations = config.destinations || [new ConsoleDestination()]; //Indicamos el destino del LOG
     }
-
+    //Seteamos el nivel minimo indicado.
+    setMinLevel(level: LogLevel): void {
+        this.config.minLevel = level;
+    }
+    //Creamos una función para determinar que mensajes mostrar.
+    private shouldLog(level: LogLevel): boolean {
+        return this.levelOrder[level] >= this.levelOrder[this.config.minLevel]; //Retornamos un booleano para saber si se debe mostrar el mensaje.
+    }
+    //Creamos un metodo para LOG
     log(level: LogLevel, message: string): void {
-        // Implementar el método de logging 
-        if (this.levelGrade[level] >= this.levelGrade[this.minLevel]) { //Comparamos el nivel recibido por parametro al asignado en el constructor
-            const timestamp = this.dateFormat;
-            //Obtenemos la fecha actual
-            const logMessage = `FECHA: [${timestamp}], NIVEL: [${level}]: ${message}`;
-            console.log(logMessage)
+        if (!this.shouldLog(level)) { //Si no debe mostrarse el mensaje, retornamos.
+            return;
         }
-    }
-
-    logDestination(destination: "consola" | "archivo"): void {
-        // Implementar el método para cambiar el destino de los logs
-        this.destination = destination;
-        console.log(`Destination changed to ${destination}`)
+        //Creamos un objeto de tipo LogMessage
+        const logMessage: LogMessage = {
+            level,
+            message,
+            timestamp: new Date()
+        };
+        //Creamos una variable para guardar el mensaje formateado
+        const formattedMessage = this.formatter.format(logMessage);
+        //Indicamos el destino del LOG
+        this.destinations.forEach((destination) => {
+            if (destination instanceof ConsoleDestination) {
+                destination.writeColored(level, formattedMessage);
+            } else {
+                destination.write(formattedMessage)
+            }
+        })
     }
 }

@@ -1,5 +1,5 @@
-/* Dividir responsabilidades
-Responsabilidades:
+/* 
+Dividir responsabilidades:
 Tipos a crear: LogLevel✅ | Mensajes | Formato de fecha | Destino de logs
 Interfaces a crear : LoggerConfig | LogMessage | DateFormat | LogDestination
 Funcionalidades a configurar : Niveles de log | Formato de fecha | Destino de logs | Mensajes de log
@@ -18,8 +18,9 @@ export enum DateFormat {
 //Interfaz para crear configuraciones de LOG
 export interface LoggerConfig {
     minLevel: LogLevel; //Nivel minimo aceptado de type LogLevel
-    dateFormat: string; //Formato de fecha de tipo string
-    destination: "consola" | "archivo"; //Destino del LOG puede mostrarse en consola o guardarse en un archivo (json/txt/md etc)
+    dateFormat: DateFormat; //Formato de fecha de tipo Date
+    destinations?: LogDestination[]; //Destino del LOG puede mostrarse en consola o guardarse en un archivo (json/txt/md etc)
+    formatter?: LogFormatter; //Formato de LOG
 }
 //Interfaz de mensajes de LOG
 export interface LogMessage {
