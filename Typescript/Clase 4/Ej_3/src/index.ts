@@ -17,7 +17,7 @@ typescript
 import { DateFormat, LogDestination, LogFormatter, LogLevel, LogMessage, LoggerConfig } from "./types/types";
 import { appendFileSync } from "node:fs";
 
-//Clase para formatear la fecha y crear el mensaje de LOG
+//Clase para formatear la fecha y crear el mensaje de LOG.
 class DefaultFormatter implements LogFormatter {
     /* Se puede construir la funcion de la siguiente manera:
         private dateFormat: DateFormat;         Inicio la variable con el tipo de dato DateFormat (USA,ARG,CH,ISO)
@@ -30,11 +30,11 @@ class DefaultFormatter implements LogFormatter {
     por cada formato de fecha que se le pase. 
     */
     private formatDate(date: Date): string {
-        //Si es formato ISO se utiliza el metodo toISOString
+        //Si es formato ISO se utiliza el metodo toISOString.
         if (this.dateFormat === DateFormat.ISO) {
             return date.toISOString();
         }
-        //Creamos una constante con las opciones para formatear la fecha
+        //Creamos una constante con las opciones para formatear la fecha.
         const options: Intl.DateTimeFormatOptions = {
             year: 'numeric',
             month: 'long',
@@ -46,19 +46,19 @@ class DefaultFormatter implements LogFormatter {
         }
         /* 
         En caso de ser otro formato de fecha,
-        se envia la fecha recibida y las opciones creadas para formatear la fecha
+        se envia la fecha recibida y las opciones creadas para formatear la fecha.
         */
         return date.toLocaleDateString(this.dateFormat, options);
     }
     //Al usar implements LogFormatter podemos acceder al metodo format:
     format(logMessage: LogMessage): string {
-        //Creamos una variable para guardar el formato creado antes de enviarlo por mensaje
+        //Creamos una variable para guardar el formato creado antes de enviarlo por mensaje.
         const formattedDate = this.formatDate(logMessage.timestamp); //Utilizamos la funcion privada formatDate y le enviamos el tiempo recibido por logMessage.timestamp
-        //Retornamos el mensaje con el formato tipo LogMessage
+        //Retornamos el mensaje con el formato tipo LogMessage.
         return `[${formattedDate}] [${logMessage.level}]: ${logMessage.message}`
     }
 }
-//Clase para manejar el destino del mensaje creado
+//Clase para manejar el destino del mensaje creado mediante un archivo.
 class FileDestination implements LogDestination {
     //Creamos un constructor para recibir el path del archivo
     constructor(private filePath: string) { }
@@ -69,13 +69,32 @@ class FileDestination implements LogDestination {
         appendFileSync(filePath, message + '\n') //Utilizamos el metodo appendFileSync para guardar el mensaje en el archivo
     }
 }
+//Clase para manejar el destino de los logs mediante la consola.
+class ConsoleDestination implements LogDestination {
+    //Creamos un objeto privado unicamente para utilizar dentro de esta función.
+    private colorMap: Record<LogLevel, string> = {
+        DEBUG: '\x1b[36m', //Cyan
+        INFO: '\x1b[32m', //Verde
+        WARN: '\x1b[33m', //Amarillo
+        ERROR: '\x1b[31m' //Rojo
+    };
+    //Utilizamos el metodo write que se implementa en LogDestination.
+    write(message: string): void {
+        console.log(message)
+    }
+    //Creamos un metodo para escribir el mensaje en color.
+    writeColored(level: LogLevel, message: string): void {
+        const color = this.colorMap[level];
+        console.log(`${color}${message}\x1b[0m`);
+    }
+}
 
-class Logger implements LoggerConfig { //Implements para que sea estricto en la estructura de datos
+class Logger implements LoggerConfig { //Implements para que sea estricto en la estructura de datos.
     minLevel: LogLevel;
     dateFormat: string;
     destination: "consola" | "archivo";
     levelGrade: Record<LogLevel, number> =
-        //Definimos un nivel de grado para cada log  - Record para typar objetos
+        //Definimos un nivel de grado para cada log  - Record para typar objetos.
         {
             DEBUG: 0,
             INFO: 1,
