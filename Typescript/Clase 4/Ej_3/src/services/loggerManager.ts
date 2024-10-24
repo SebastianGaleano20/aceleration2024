@@ -62,28 +62,32 @@ export class DefaultFormatter implements LogFormatter {
 }
 //Clase para manejar el destino del mensaje creado mediante un archivo.
 export class FileDestination implements LogDestination {
-    //Variable para guardar el Path del archivo
     private absolutePath: string;
-    //Creamos un constructor para recibir el path del archivo
-    constructor(private filePath: string) {
+
+    constructor(filePath: string) {
         // Obtenemos la ruta del directorio actual en ES modules
         const currentFileUrl = import.meta.url;
         const currentFilePath = fileURLToPath(currentFileUrl);
-        const currentDirPath = dirname(currentFilePath);
-
-        // Convertimos la ruta relativa a absoluta desde la raíz del proyecto
-        this.absolutePath = join(currentDirPath, '..', '..', filePath.replace('../', ''));
-
+        const srcPath = join(dirname(currentFilePath), '..');  // Nos movemos al directorio src
+        
+        // Construimos la ruta absoluta dentro de src
+        const cleanPath = filePath.replace(/^\.\.\/+/, '');
+        this.absolutePath = join(srcPath, cleanPath);
+        
         // Verificamos si el directorio existe, si no, lo creamos
-        const dir = dirname(this.absolutePath);
-        if (!existsSync(dir)) {
-            mkdirSync(dir, { recursive: true });
+        const logDir = dirname(this.absolutePath);
+        if (!existsSync(logDir)) {
+            mkdirSync(logDir, { recursive: true });
         }
+        
+        // Debug: mostrar la ruta donde se intentará escribir
+        console.log('Log file will be written to:', this.absolutePath);
     }
-    //Utilizamos el metodo write que se implementa en LogDestination
+
     write(message: string): void {
         try {
-            appendFileSync(this.absolutePath, `${message}\n`);
+            const formattedMessage = message.endsWith('\n') ? message : message + '\n';
+            appendFileSync(this.absolutePath, formattedMessage);
         } catch (error) {
             console.error(`Error writing to log file at ${this.absolutePath}:`, error);
             throw error;

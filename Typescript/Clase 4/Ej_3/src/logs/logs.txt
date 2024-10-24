@@ -68,3 +68,11 @@
 [2024-10-24T13:51:45.327Z] [ERROR]: Este es un mensaje de ERROR
 [2024-10-24T13:51:53.091Z] [WARN]: Este es un mensaje de WARN
 [2024-10-24T13:51:53.094Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:54:40.270Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:54:40.272Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:54:54.200Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:54:54.201Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:54:59.187Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:54:59.189Z] [ERROR]: Este es un mensaje de ERROR
+[2024-10-24T13:55:07.177Z] [WARN]: Este es un mensaje de WARN
+[2024-10-24T13:55:07.182Z] [ERROR]: Este es un mensaje de ERROR
